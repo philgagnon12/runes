@@ -36,3 +36,43 @@
     transform: rotate(360deg);
   }
 }
+
+.fun {
+  background-color: red;
+  cursor: pointer;
+}
+
+.whynot {
+  background-color: blue;
+  cursor: pointer;
+}
+
+.ert{
+   display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+
+
+}
+
+.dfg{
+  display: inline-grid;
+}
+
+.rune{
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.rune_select {
+  font-weight: normal;
+}
+
+.rune_select_selected {
+  font-weight: bold;
+  color: orange;
+}
+
