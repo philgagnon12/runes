@@ -17,7 +17,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "runes": "node scripts/runes_img_to_data_set.js"
+    "runes": "node scripts/runes_img_to_data_set.js",
+    "rune_words": "node scripts/rune_words_to_data_set.js"
   },
   "eslintConfig": {
     "extends": [
@@ -36,5 +37,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "node-html-parser": "^5.1.0",
+    "sanitize-html": "^2.5.2"
   }
 }

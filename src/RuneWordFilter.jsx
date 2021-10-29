@@ -1,8 +1,7 @@
 import React from 'react';
-import RuneSelect from './RuneSelect.jsx';
+import Rune from './Rune.jsx';
+import Select from './Select.jsx';
 import RunesDataSet from './RunesDataSet.js';
-import RuneWordsDataSet from './RuneWordsDataSet.js';
-import RuneWordFiltered from './RuneWordFiltered.jsx';
 import FuzzyFind from './FuzzyFind.jsx';
 
 
@@ -40,9 +39,9 @@ class RuneWordFilter extends React.Component {
         };
 
         filters_with_added.push({
-            filter: function(rune_word_filtered, filter_args){
+            filter: function(filter_args){
                 let rune_name_is_a_value = false;
-                rune_word_filtered.props.rune_order.forEach(function(rune_name) {
+                filter_args.rune_word.rune_order.forEach(function(rune_name) {
                     rune_name_is_a_value = rune_name_is_a_value || rune_name === this.filter_args.rune_name;
                 },{filter_args});
                 return rune_name_is_a_value;
@@ -88,7 +87,7 @@ class RuneWordFilter extends React.Component {
         };
 
         filters_with_added.push({
-            filter: function(rune_word_filtered, filter_args){
+            filter: function(filter_args){
 
                 let keep = true;
 
@@ -102,10 +101,10 @@ class RuneWordFilter extends React.Component {
                     const re = new RegExp(string, "ig") ;
 
                     keep = keep &&
-                           ( rune_word_filtered.props.name.match(re) !== null ||
-                           rune_word_filtered.props.allowed_items.match(re) !== null ||
-                           rune_word_filtered.props.rune_order.filter( name => name.match(re) !== null ).length > 0 ||
-                           rune_word_filtered.props.completed_stats.filter( stat => stat.match(re) !== null ).length > 0 );
+                           ( filter_args.rune_word.name.match(re) !== null ||
+                             filter_args.rune_word.allowed_items.match(re) !== null ||
+                             filter_args.rune_word.rune_order.filter( name => name.match(re) !== null ).length > 0 ||
+                             filter_args.rune_word.completed_stats.filter( stat => stat.match(re) !== null ).length > 0 );
                 });
                 
                 return keep;
@@ -151,13 +150,19 @@ class RuneWordFilter extends React.Component {
 
   render()
   {
+    const runeWordFilter = this;
     return <div>
+                Search
                 <FuzzyFind onSubmit={this.onFuzzyFindSubmit} filters={this.state.filters} onChange={this.onFuzzyFindChange} value={this.state.fuzzy_find_value} />
                 <ul>
                 {this.state.fuzzy_find_strings.map((f,i) => <li key={i}>{f} <button onClick={() => this.onFuzzyFindStringRemove(i)}>trash</button></li>)}
                 </ul>
-                <div>{RunesDataSet.map( rune => <RuneSelect key={rune.index} onClick={this.onRuneClick} index={rune.index} name={rune.name} /> )}</div>
-                <div>{RuneWordsDataSet.map( rune_word => <RuneWordFiltered key={rune_word.name} {...rune_word} filters={this.state.filters}/> )}</div>
+                <div>{RunesDataSet.map( rune => <Select key={rune.index} render={ function(select){
+                    const runeChild = React.createElement(Rune, rune);
+                    return <span className={"rune " + select.state.className} onClick={ function(e){ select.onClick(e); runeWordFilter.onRuneClick(e,runeChild);}}>{runeChild}{rune.name}</span>
+                }
+                }/> )}</div>
+                <div>{this.props.render(this)}</div>
             </div>
   }
 

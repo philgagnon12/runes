@@ -12,18 +12,18 @@ class RuneWord extends React.Component {
         const rune = Rune.FromName(name);
         const spacer = " + ";
 
-        return ( <li key={name}>{rune} {name} {array.length-1 > index && spacer} </li>)
+        return ( <li class="order" key={name}>{rune} {name} {array.length-1 > index && spacer} </li>)
     });
 
     const completed_stats = this.props.completed_stats?.map( function(stat, index){
         return <li key={index}>{stat}</li>
     });
 
-    return <ul>
-      <li>{this.props.name}</li>
+    return <ul class="rune_word">
+      <li class="name">{this.props.name}</li>
       <li>{this.props.allowed_items}</li>
       <ul>{rune_order}</ul>
-      <li><ul>{completed_stats}</ul></li>
+      <li><ul class="stats">{completed_stats}</ul></li>
     </ul>
   }
 }

@@ -76,3 +76,48 @@
   color: orange;
 }
 
+.pin_on {
+  color: white;
+  background-color: green;
+}
+
+.pin_off {
+  color: white;
+  background-color: red;
+}
+
+
+.rune{
+  cursor: pointer;
+}
+
+.rune.selected {
+  font-weight: bold;
+  color: orange;
+}
+
+.rune_word{
+  font-size: 0.6em;
+  font-family: arial;
+
+}
+
+.rune_word li{
+  list-style: none;
+}
+
+.rune_word .name{
+  color: #908858;
+  font-weight: bold;
+}
+
+.rune_word .order{
+  display: inline;
+}
+
+.stats{
+  color: #4850B8;
+  
+  
+}
+
