@@ -7,6 +7,7 @@ class FuzzyFind extends React.Component {
         super(props);
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.onClear = this.onClear.bind(this);
         this.state = {value: this.props.value};
     }
 
@@ -22,9 +23,15 @@ class FuzzyFind extends React.Component {
         this.props.onChange(e, this);
     }
 
+    onClear(e)
+    {
+        this.setState({value:""});
+    }
+
     render() {
         return <form onSubmit={this.onSubmit} >
-                    <input type="text" onChange={this.onChange} value={this.state.value} />
+                    <input id="fuzzy-find" type="text" onChange={this.onChange} value={this.state.value} />
+                    <button type="button" onClick={this.onClear}>clear</button>
                </form>
     }
 }

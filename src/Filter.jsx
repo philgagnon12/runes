@@ -29,7 +29,14 @@ class Filter extends React.Component {
             });
         }
 
-        return <>{ visible === true ? this.props.render(this) : null }</>;
+        let filterStyle = {
+            display: visible === true ? "inline-block" : "none"
+        };
+
+
+
+        return  <div style={filterStyle}>{this.props.render(this)}</div>;
+
     }
 }
 

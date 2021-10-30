@@ -25,15 +25,17 @@ function App() {
    <Pins render={ pins =>
     <div>{pins.state.categories_active}
     <RuneWordFilter render={ rune_word_filter =>
-      RuneWordsDataSet.map( rune_word => <Filter key={rune_word.name}
-                                                 filters={rune_word_filter.state.filters}
-                                                 filter_args={{rune_word}}
-                                                 render={
-                                                  filter => <Pin filter_by_categories={pins.state.categories_active.length > 0}
-                                                                 categories_all={[...pins.props.categories_all,...pins.state.categories_all]}
-                                                                 categories_active={pins.state.categories_active} ><RuneWord {...rune_word} /></Pin> 
-                                                  } 
-                                         /> )
+      RuneWordsDataSet.map( rune_word => 
+        <Filter key={rune_word.name}
+                 filters={rune_word_filter.state.filters}
+                 filter_args={{rune_word}}
+                 render={
+                  filter => <div className={"zxc"}><Pin filter_by_categories={pins.state.categories_active.length > 0}
+                                 categories_all={[...pins.props.categories_all,...pins.state.categories_all]}
+                                 categories_active={pins.state.categories_active} >
+          <RuneWord {...rune_word} /></Pin> </div>
+                  } 
+         /> )
     }>
 
        

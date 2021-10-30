@@ -157,9 +157,9 @@ class RuneWordFilter extends React.Component {
                 <ul>
                 {this.state.fuzzy_find_strings.map((f,i) => <li key={i}>{f} <button onClick={() => this.onFuzzyFindStringRemove(i)}>trash</button></li>)}
                 </ul>
-                <div>{RunesDataSet.map( rune => <Select key={rune.index} render={ function(select){
+                <div className={"yui"}>{RunesDataSet.map( rune => <Select key={rune.index} render={ function(select){
                     const runeChild = React.createElement(Rune, rune);
-                    return <span className={"rune " + select.state.className} onClick={ function(e){ select.onClick(e); runeWordFilter.onRuneClick(e,runeChild);}}>{runeChild}{rune.name}</span>
+                    return <div className={"rune " + select.state.className} onClick={ function(e){ select.onClick(e); runeWordFilter.onRuneClick(e,runeChild);}}>{runeChild}<div>{rune.name}</div></div>
                 }
                 }/> )}</div>
                 <div>{this.props.render(this)}</div>

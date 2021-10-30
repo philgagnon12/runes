@@ -39,19 +39,23 @@ class Pin extends React.Component {
 
     render() {
 
-        let pinned = false;
 
         // Merge state with prop
         const categories_pinned = Array.from(this.state.categories_pinned).concat(this.props.categories_pinned);
 
-        this.props.categories_all.forEach( function(category_all){
-            if( pinned === false )
-            {
-                categories_pinned.forEach( category_pinned => 
-                    pinned = pinned || (category_all === category_pinned)
-                )
-            }
-        });
+
+
+        const pinned = function( category ){
+
+            return categories_pinned.some( function(category_pinned){
+                
+                if( category === category_pinned )
+                    return true;
+                return false;
+            });
+        };
+
+
 
 
         let categories_pinned_in_active = [];
@@ -71,8 +75,8 @@ class Pin extends React.Component {
 
         return <>
             { (this.props.filter_by_categories === false || categories_pinned_in_active.length > 0) && <div>
-            <div>{ this.props.categories_all.map( category => <button key={category} onClick={function(e){onClick(e,category)}}>{pinned === true && <>Un-</>}Pin {pinned === true && <>from</>}{pinned === false && <>to</>} {category}</button> )}</div>
-            {this.props.children}
+            <div>{ this.props.categories_all.map( category => <button key={category} onClick={function(e){onClick(e,category)}}>{pinned(category) === true && <>Un-</>}Pin {pinned(category) === true && <>from</>}{pinned(category) === false && <>to</>} {category}</button> )}</div>
+            {categories_pinned}{this.props.children}
         </div> }
         </>
     }

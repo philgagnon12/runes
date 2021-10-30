@@ -15,12 +15,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 2em;
   color: white;
 }
 
@@ -47,7 +42,7 @@
   cursor: pointer;
 }
 
-.ert{
+.ertzxc{
    display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -55,8 +50,25 @@
 
 }
 
-.dfg{
+.dfgzxc{
   display: inline-grid;
+}
+
+.ert{
+  display:flex;
+  flex-direction: row;
+}
+
+
+.zxc{
+
+  display:inline-flex;
+}
+
+.yui{
+
+  display:grid;
+  grid-template-columns:repeat(12, 1fr);
 }
 
 .rune{
@@ -99,6 +111,8 @@
 .rune_word{
   font-size: 0.6em;
   font-family: arial;
+  margin:0.5em;
+  padding:0.5em;
 
 }
 
@@ -112,7 +126,13 @@
 }
 
 .rune_word .order{
-  display: inline;
+  display: inline-block;
+}
+
+.rune_word ul{
+  padding:0;
+  margin:0;
+
 }
 
 .stats{
